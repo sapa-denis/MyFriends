@@ -8,16 +8,27 @@
         <scene sceneID="R2c-VX-ALL">
             <objects>
                 <tableViewController id="f3F-qF-b62" customClass="MFRFriendsListTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Yao-Mt-v5H">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="Yao-Mt-v5H">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="om7-vg-RaE">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="1xg-Cy-MGO" rowHeight="65" style="IBUITableViewCellStyleDefault" id="om7-vg-RaE">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="om7-vg-RaE" id="7RF-7w-8js">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1xg-Cy-MGO">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="nZf-Is-Jwf" kind="show" trigger="accessoryAction" id="qIw-MB-a5L"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -25,11 +36,63 @@
                             <outlet property="delegate" destination="f3F-qF-b62" id="69I-Wi-swR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Friends" id="TAN-oy-iSp"/>
+                    <navigationItem key="navigationItem" title="My Friends" id="TAN-oy-iSp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1aO-Xu-1La">
+                            <connections>
+                                <segue destination="zxB-7r-KSH" kind="show" id="Frp-v4-2NQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4n-5Y-gl4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="684" y="326"/>
+        </scene>
+        <!--Deatil Informaion-->
+        <scene sceneID="mKp-XS-mTw">
+            <objects>
+                <tableViewController title="Deatil Informaion" id="zxB-7r-KSH" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hZn-eP-578">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DGz-uu-DQF">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DGz-uu-DQF" id="lgV-lG-hSF">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zxB-7r-KSH" id="KpD-lw-0F3"/>
+                            <outlet property="delegate" destination="zxB-7r-KSH" id="ZP2-nJ-7Ek"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Frends" id="siA-6P-LOD"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xcp-gX-o1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1462" y="-42"/>
+        </scene>
+        <!--Add Frends-->
+        <scene sceneID="M06-o8-Baj">
+            <objects>
+                <viewController title="Add Frends" id="nZf-Is-Jwf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pAy-Fs-lea"/>
+                        <viewControllerLayoutGuide type="bottom" id="KAs-kq-7vg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pvb-UL-lK2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Deatil Informaion" id="w35-Zi-Tfp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jyt-BF-cl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1468" y="682"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="l4X-Jh-HlA">
