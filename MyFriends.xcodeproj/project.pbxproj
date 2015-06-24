@@ -17,6 +17,7 @@
 		EAC9F5531B3B406800ED558E /* MyFriendsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5521B3B406800ED558E /* MyFriendsTests.m */; };
 		EAC9F55F1B3B434A00ED558E /* MFRFriendsListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F55E1B3B434A00ED558E /* MFRFriendsListTableViewController.m */; };
 		EAC9F5631B3B5F0A00ED558E /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5621B3B5F0A00ED558E /* Friend.m */; };
+		EAC9F5671B3B617700ED558E /* MFRRandomuserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5661B3B617700ED558E /* MFRRandomuserAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		EAC9F55E1B3B434A00ED558E /* MFRFriendsListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRFriendsListTableViewController.m; sourceTree = "<group>"; };
 		EAC9F5611B3B5F0A00ED558E /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
 		EAC9F5621B3B5F0A00ED558E /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		EAC9F5651B3B617700ED558E /* MFRRandomuserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRRandomuserAPI.h; sourceTree = "<group>"; };
+		EAC9F5661B3B617700ED558E /* MFRRandomuserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRRandomuserAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,7 @@
 		EAC9F5321B3B406700ED558E /* MyFriends */ = {
 			isa = PBXGroup;
 			children = (
+				EAC9F5641B3B612F00ED558E /* API */,
 				EAC9F5601B3B5F0A00ED558E /* Model */,
 				EAC9F55C1B3B434A00ED558E /* ViewControllers */,
 				EAC9F5401B3B406700ED558E /* Main.storyboard */,
@@ -165,6 +169,15 @@
 				EAC9F5621B3B5F0A00ED558E /* Friend.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EAC9F5641B3B612F00ED558E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				EAC9F5651B3B617700ED558E /* MFRRandomuserAPI.h */,
+				EAC9F5661B3B617700ED558E /* MFRRandomuserAPI.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAC9F5671B3B617700ED558E /* MFRRandomuserAPI.m in Sources */,
 				EAC9F5391B3B406700ED558E /* AppDelegate.m in Sources */,
 				EAC9F5631B3B5F0A00ED558E /* Friend.m in Sources */,
 				EAC9F5361B3B406700ED558E /* main.m in Sources */,
