@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MFRFriendsListTableViewController.h
 //  MyFriends
 //
 //  Created by Sapa Denys on 24.06.15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MFRFriendsListTableViewController : UITableViewController
 
 
 @end

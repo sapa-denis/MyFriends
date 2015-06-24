@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A070BC2655AA572ACB4FF59 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F331AEBA47DD2B35A59323 /* libPods.a */; };
 		EAC9F5361B3B406700ED558E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5351B3B406700ED558E /* main.m */; };
 		EAC9F5391B3B406700ED558E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5381B3B406700ED558E /* AppDelegate.m */; };
 		EAC9F53C1B3B406700ED558E /* MyFriends.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F53A1B3B406700ED558E /* MyFriends.xcdatamodeld */; };
-		EAC9F53F1B3B406700ED558E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F53E1B3B406700ED558E /* ViewController.m */; };
 		EAC9F5421B3B406700ED558E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAC9F5401B3B406700ED558E /* Main.storyboard */; };
 		EAC9F5441B3B406700ED558E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC9F5431B3B406700ED558E /* Images.xcassets */; };
 		EAC9F5471B3B406700ED558E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC9F5451B3B406700ED558E /* LaunchScreen.xib */; };
 		EAC9F5531B3B406800ED558E /* MyFriendsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5521B3B406800ED558E /* MyFriendsTests.m */; };
+		EAC9F55F1B3B434A00ED558E /* MFRFriendsListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F55E1B3B434A00ED558E /* MFRFriendsListTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,20 +29,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12F331AEBA47DD2B35A59323 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		96504FAED658F9EA8F10E749 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B0291FB7BB4164BB9F254BBB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EAC9F5301B3B406700ED558E /* MyFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC9F5341B3B406700ED558E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAC9F5351B3B406700ED558E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EAC9F5371B3B406700ED558E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EAC9F5381B3B406700ED558E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EAC9F53B1B3B406700ED558E /* MyFriends.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyFriends.xcdatamodel; sourceTree = "<group>"; };
-		EAC9F53D1B3B406700ED558E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EAC9F53E1B3B406700ED558E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EAC9F5411B3B406700ED558E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EAC9F5431B3B406700ED558E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EAC9F5461B3B406700ED558E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EAC9F54C1B3B406800ED558E /* MyFriendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFriendsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC9F5511B3B406800ED558E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAC9F5521B3B406800ED558E /* MyFriendsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFriendsTests.m; sourceTree = "<group>"; };
+		EAC9F55D1B3B434A00ED558E /* MFRFriendsListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRFriendsListTableViewController.h; sourceTree = "<group>"; };
+		EAC9F55E1B3B434A00ED558E /* MFRFriendsListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRFriendsListTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A070BC2655AA572ACB4FF59 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,12 +67,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E2D0EECFBC45D7DFC03CDB4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				96504FAED658F9EA8F10E749 /* Pods.debug.xcconfig */,
+				B0291FB7BB4164BB9F254BBB /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5655B3BD1E11809752446C25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12F331AEBA47DD2B35A59323 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EAC9F5271B3B406700ED558E = {
 			isa = PBXGroup;
 			children = (
 				EAC9F5321B3B406700ED558E /* MyFriends */,
 				EAC9F54F1B3B406800ED558E /* MyFriendsTests */,
 				EAC9F5311B3B406700ED558E /* Products */,
+				3E2D0EECFBC45D7DFC03CDB4 /* Pods */,
+				5655B3BD1E11809752446C25 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,14 +107,8 @@
 		EAC9F5321B3B406700ED558E /* MyFriends */ = {
 			isa = PBXGroup;
 			children = (
-				EAC9F5371B3B406700ED558E /* AppDelegate.h */,
-				EAC9F5381B3B406700ED558E /* AppDelegate.m */,
-				EAC9F53D1B3B406700ED558E /* ViewController.h */,
-				EAC9F53E1B3B406700ED558E /* ViewController.m */,
+				EAC9F55C1B3B434A00ED558E /* ViewControllers */,
 				EAC9F5401B3B406700ED558E /* Main.storyboard */,
-				EAC9F5431B3B406700ED558E /* Images.xcassets */,
-				EAC9F5451B3B406700ED558E /* LaunchScreen.xib */,
-				EAC9F53A1B3B406700ED558E /* MyFriends.xcdatamodeld */,
 				EAC9F5331B3B406700ED558E /* Supporting Files */,
 			);
 			path = MyFriends;
@@ -99,6 +117,11 @@
 		EAC9F5331B3B406700ED558E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EAC9F5431B3B406700ED558E /* Images.xcassets */,
+				EAC9F5451B3B406700ED558E /* LaunchScreen.xib */,
+				EAC9F53A1B3B406700ED558E /* MyFriends.xcdatamodeld */,
+				EAC9F5371B3B406700ED558E /* AppDelegate.h */,
+				EAC9F5381B3B406700ED558E /* AppDelegate.m */,
 				EAC9F5341B3B406700ED558E /* Info.plist */,
 				EAC9F5351B3B406700ED558E /* main.m */,
 			);
@@ -122,6 +145,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EAC9F55C1B3B434A00ED558E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EAC9F55D1B3B434A00ED558E /* MFRFriendsListTableViewController.h */,
+				EAC9F55E1B3B434A00ED558E /* MFRFriendsListTableViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,9 +161,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAC9F5561B3B406800ED558E /* Build configuration list for PBXNativeTarget "MyFriends" */;
 			buildPhases = (
+				3261376A0B0E859746CC6C5F /* Check Pods Manifest.lock */,
 				EAC9F52C1B3B406700ED558E /* Sources */,
 				EAC9F52D1B3B406700ED558E /* Frameworks */,
 				EAC9F52E1B3B406700ED558E /* Resources */,
+				00F56D96FEF66A9A03493419 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -217,6 +251,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		00F56D96FEF66A9A03493419 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3261376A0B0E859746CC6C5F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EAC9F52C1B3B406700ED558E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -224,7 +291,7 @@
 			files = (
 				EAC9F5391B3B406700ED558E /* AppDelegate.m in Sources */,
 				EAC9F5361B3B406700ED558E /* main.m in Sources */,
-				EAC9F53F1B3B406700ED558E /* ViewController.m in Sources */,
+				EAC9F55F1B3B434A00ED558E /* MFRFriendsListTableViewController.m in Sources */,
 				EAC9F53C1B3B406700ED558E /* MyFriends.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +418,7 @@
 		};
 		EAC9F5571B3B406800ED558E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96504FAED658F9EA8F10E749 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MyFriends/Info.plist;
@@ -361,6 +429,7 @@
 		};
 		EAC9F5581B3B406800ED558E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0291FB7BB4164BB9F254BBB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MyFriends/Info.plist;
@@ -422,6 +491,7 @@
 				EAC9F5581B3B406800ED558E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EAC9F5591B3B406800ED558E /* Build configuration list for PBXNativeTarget "MyFriendsTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +500,7 @@
 				EAC9F55B1B3B406800ED558E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

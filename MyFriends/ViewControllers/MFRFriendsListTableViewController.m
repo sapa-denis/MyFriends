@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Sapa Denys. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MFRFriendsListTableViewController.h"
 
-@interface ViewController ()
+@interface MFRFriendsListTableViewController ()
 
 @end
 
-@implementation ViewController
+@implementation MFRFriendsListTableViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
