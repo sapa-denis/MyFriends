@@ -18,7 +18,11 @@
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSData * photo;
 @property (nonatomic, retain) NSString * photoULRString;
+@property (nonatomic) BOOL isFriend;
+
+@property (nonatomic, strong, readonly) NSString *fullName;
 
 - (void)fillFromDictionary:(NSDictionary *)mappedObj;
+
 
 @end

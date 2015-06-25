@@ -7,14 +7,18 @@
 //
 
 #import "MFRPersonsTableViewController.h"
+#import <CoreData/CoreData.h>
+
 #import "MFRRandomuserAPI.h"
+#import "AppDelegate.h"
 #import "Friend.h"
 
-static NSString * const kPersonsCellIdentifier = @"NewPersonCell";
+
+static NSString *const kPersonsCellIdentifier = @"NewPersonCell";
 
 @interface MFRPersonsTableViewController ()
 
-@property (nonatomic, strong) NSArray *personsArray;
+@property (nonatomic, strong) NSMutableArray *personsArray;
 
 @end
 
@@ -27,19 +31,34 @@ static NSString * const kPersonsCellIdentifier = @"NewPersonCell";
 	
 	__weak MFRPersonsTableViewController* weakSelf = self;
 	[MFRRandomuserAPI fetchNewPeopleWithSuccess:^(NSArray *newPeople) {
-		weakSelf.personsArray = newPeople;
+		weakSelf.personsArray = [NSMutableArray arrayWithArray:newPeople];
 		[weakSelf.tableView reloadData];
 	}
 										failure:^(NSError *error) {
-											NSLog(@"%s Fetch Error: %@", __func__, error);
+											NSLog(@"%s Fetch Error: %@", __func__, error.localizedDescription);
 										}];
 }
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 65;
+	Friend *person = [self.personsArray objectAtIndex:indexPath.row];
+	[person setIsFriend:YES];
+	
+	
+	AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *context = [delegate managedObjectContext];
+	
+	[context insertObject:person];
+	
+	NSError *error = nil;
+	if (![context save:&error]) {
+		NSLog(@"%s Can not save friend: %@", __func__, error.localizedDescription);
+	}
+	
+	[self.personsArray removeObjectAtIndex:indexPath.row];
+	[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
 }
 
 #pragma mark - UITableViewDataSource

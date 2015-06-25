@@ -36,8 +36,8 @@
 			 
 			 NSMutableArray *personsObjects = [NSMutableArray arrayWithArray:@[]];
 			 
-			 NSArray *offers = [responseObject objectForKey:@"results"];
-			 [offers enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
+			 NSArray *persons = [responseObject objectForKey:@"results"];
+			 [persons enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
 				 
 				 
 				 NSEntityDescription *friendEntity = [NSEntityDescription entityForName:NSStringFromClass([Friend class])

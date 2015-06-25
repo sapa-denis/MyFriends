@@ -8,6 +8,9 @@
 
 #import "Friend.h"
 
+@interface Friend ()
+
+@end
 
 @implementation Friend
 
@@ -17,6 +20,7 @@
 @dynamic email;
 @dynamic photo;
 @dynamic photoULRString;
+@dynamic isFriend;
 
 - (void)fillFromDictionary:(NSDictionary *)mappedObj
 {
@@ -33,6 +37,12 @@
 	self.phone = [userInfo objectForKey:@"cell"];
 	self.email = [userInfo objectForKey:@"email"];
 	self.photoULRString = [photos objectForKey:@"thumbnail"];
+	self.isFriend = NO;
+}
+
+- (NSString *)fullName
+{
+	return [NSString stringWithFormat:@"%@, %@", self.lastName, self.firstName];
 }
 
 @end

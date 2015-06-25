@@ -19,6 +19,7 @@
 		EAC9F5631B3B5F0A00ED558E /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5621B3B5F0A00ED558E /* Friend.m */; };
 		EAC9F5671B3B617700ED558E /* MFRRandomuserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5661B3B617700ED558E /* MFRRandomuserAPI.m */; };
 		EAC9F56A1B3C990500ED558E /* MFRPersonsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5691B3C990500ED558E /* MFRPersonsTableViewController.m */; };
+		EAC9F56D1B3CBD8F00ED558E /* MFRFriendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F56C1B3CBD8F00ED558E /* MFRFriendDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		EAC9F5661B3B617700ED558E /* MFRRandomuserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRRandomuserAPI.m; sourceTree = "<group>"; };
 		EAC9F5681B3C990500ED558E /* MFRPersonsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRPersonsTableViewController.h; sourceTree = "<group>"; };
 		EAC9F5691B3C990500ED558E /* MFRPersonsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRPersonsTableViewController.m; sourceTree = "<group>"; };
+		EAC9F56B1B3CBD8F00ED558E /* MFRFriendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRFriendDetailViewController.h; sourceTree = "<group>"; };
+		EAC9F56C1B3CBD8F00ED558E /* MFRFriendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRFriendDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +166,8 @@
 				EAC9F55E1B3B434A00ED558E /* MFRFriendsListTableViewController.m */,
 				EAC9F5681B3C990500ED558E /* MFRPersonsTableViewController.h */,
 				EAC9F5691B3C990500ED558E /* MFRPersonsTableViewController.m */,
+				EAC9F56B1B3CBD8F00ED558E /* MFRFriendDetailViewController.h */,
+				EAC9F56C1B3CBD8F00ED558E /* MFRFriendDetailViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAC9F5671B3B617700ED558E /* MFRRandomuserAPI.m in Sources */,
+				EAC9F56D1B3CBD8F00ED558E /* MFRFriendDetailViewController.m in Sources */,
 				EAC9F5391B3B406700ED558E /* AppDelegate.m in Sources */,
 				EAC9F5631B3B5F0A00ED558E /* Friend.m in Sources */,
 				EAC9F56A1B3C990500ED558E /* MFRPersonsTableViewController.m in Sources */,
