@@ -19,4 +19,6 @@
 @property (nonatomic, retain) NSData * photo;
 @property (nonatomic, retain) NSString * photoULRString;
 
+- (void)fillFromDictionary:(NSDictionary *)mappedObj;
+
 @end

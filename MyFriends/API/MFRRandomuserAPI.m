@@ -17,8 +17,7 @@
 +(void)fetchNewPeopleWithSuccess:(void (^)(NSArray *))handle
 						 failure:(void (^)(NSError *))failure
 {
-	;
-	NSString *url = @"http://api.randomuser.me/?results=20";
+	NSString *url = @"http://api.randomuser.me/";
 	AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]
 											  initWithBaseURL:[NSURL URLWithString:url]];
 	
@@ -27,13 +26,15 @@
 
 	context = [delegate managedObjectContext];
 	
-	[manager GET:@"offers"
-	  parameters:nil
+	NSDictionary *parametrs = @{ @"results" : @"20" };
+	
+	[manager GET:@""
+	  parameters:parametrs
 		 success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
 			 
 			 NSLog(@"%@", responseObject);
 			 
-			 NSMutableArray *offerObjecrs = [NSMutableArray arrayWithArray:@[]];
+			 NSMutableArray *personsObjects = [NSMutableArray arrayWithArray:@[]];
 			 
 			 NSArray *offers = [responseObject objectForKey:@"results"];
 			 [offers enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
@@ -44,12 +45,12 @@
 				 
 				 Friend *newPerson = (Friend *)[[NSManagedObject alloc] initWithEntity:friendEntity
 														insertIntoManagedObjectContext:nil];
-
+				 [newPerson fillFromDictionary:obj];
 				 
-
+				 [personsObjects addObject:newPerson];
 			 }];
 			 
-			 handle(offerObjecrs);
+			 handle(personsObjects);
 		 }
 		 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			 failure(error);
