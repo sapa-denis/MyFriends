@@ -17,34 +17,38 @@ static NSString *const kFriendsDetailSegueIdentifier = @"FriendDetailSegue";
 
 @interface MFRFriendsListTableViewController ()
 
-@property (nonatomic, strong) NSArray *friendsArray;
-
+@property (nonatomic, strong) NSMutableArray *friendsArray;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end
 
 
 @implementation MFRFriendsListTableViewController
 
+- (void)viewDidLoad
+{
+	AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	_managedObjectContext = [delegate managedObjectContext];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
 	__weak MFRFriendsListTableViewController *weakSelf = self;
-	AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *context = [delegate managedObjectContext];
 	
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Friend class])];
+	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"isFriend == 1"]];
+	
 	NSAsynchronousFetchRequest *asyncFetchRequest =
 		[[NSAsynchronousFetchRequest alloc] initWithFetchRequest:fetchRequest
 												 completionBlock:^(NSAsynchronousFetchResult *result) {
 													 dispatch_async(dispatch_get_main_queue(), ^{
-														 weakSelf.friendsArray = result.finalResult;
+														 weakSelf.friendsArray = [NSMutableArray arrayWithArray:result.finalResult];
 														 [weakSelf.tableView reloadData];
 													 });
 												 }];
 	
-	
-	
-	[context performBlock:^{
+	[self.managedObjectContext performBlock:^{
 		NSError *error = nil;
-		if (![context executeRequest:asyncFetchRequest error:&error]) {
+		if (![self.managedObjectContext executeRequest:asyncFetchRequest error:&error]) {
 			NSLog(@"Unable to execute asynchronous fetch result.");
 			NSLog(@"%s, %@", __func__, error.localizedDescription);
 		}
@@ -77,6 +81,30 @@ static NSString *const kFriendsDetailSegueIdentifier = @"FriendDetailSegue";
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return YES;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
+		Friend *deletedFriend = [self.friendsArray objectAtIndex:indexPath.row];
+		deletedFriend.isFriend = NO;
+		
+		
+		NSError *savingError = nil;
+		if (![self.managedObjectContext save:&savingError]) {
+			NSLog(@"Saving Error: %@", savingError.localizedDescription);
+			return;
+		}
+		[self.friendsArray removeObjectAtIndex:indexPath.row];
+		[tableView deleteRowsAtIndexPaths:@[indexPath]
+						 withRowAnimation:UITableViewRowAnimationFade];
+		
+		
+	}
 }
 
 #pragma mark - Navigation

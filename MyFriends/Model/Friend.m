@@ -42,7 +42,7 @@
 
 - (NSString *)fullName
 {
-	return [NSString stringWithFormat:@"%@, %@", self.lastName, self.firstName];
+	return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
 }
 
 @end
