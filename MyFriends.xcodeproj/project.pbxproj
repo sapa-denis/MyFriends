@@ -20,6 +20,7 @@
 		EAC9F5671B3B617700ED558E /* MFRRandomuserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5661B3B617700ED558E /* MFRRandomuserAPI.m */; };
 		EAC9F56A1B3C990500ED558E /* MFRPersonsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5691B3C990500ED558E /* MFRPersonsTableViewController.m */; };
 		EAC9F56D1B3CBD8F00ED558E /* MFRFriendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F56C1B3CBD8F00ED558E /* MFRFriendDetailViewController.m */; };
+		EAC9F5711B3DD92400ED558E /* MFRPhotoProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F5701B3DD92400ED558E /* MFRPhotoProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		EAC9F5691B3C990500ED558E /* MFRPersonsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRPersonsTableViewController.m; sourceTree = "<group>"; };
 		EAC9F56B1B3CBD8F00ED558E /* MFRFriendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRFriendDetailViewController.h; sourceTree = "<group>"; };
 		EAC9F56C1B3CBD8F00ED558E /* MFRFriendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRFriendDetailViewController.m; sourceTree = "<group>"; };
+		EAC9F56F1B3DD92400ED558E /* MFRPhotoProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRPhotoProvider.h; sourceTree = "<group>"; };
+		EAC9F5701B3DD92400ED558E /* MFRPhotoProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRPhotoProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,7 @@
 		EAC9F5321B3B406700ED558E /* MyFriends */ = {
 			isa = PBXGroup;
 			children = (
+				EAC9F56E1B3DD90900ED558E /* Data Provider */,
 				EAC9F5641B3B612F00ED558E /* API */,
 				EAC9F5601B3B5F0A00ED558E /* Model */,
 				EAC9F55C1B3B434A00ED558E /* ViewControllers */,
@@ -188,6 +192,15 @@
 				EAC9F5661B3B617700ED558E /* MFRRandomuserAPI.m */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		EAC9F56E1B3DD90900ED558E /* Data Provider */ = {
+			isa = PBXGroup;
+			children = (
+				EAC9F56F1B3DD92400ED558E /* MFRPhotoProvider.h */,
+				EAC9F5701B3DD92400ED558E /* MFRPhotoProvider.m */,
+			);
+			path = "Data Provider";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +345,7 @@
 				EAC9F56A1B3C990500ED558E /* MFRPersonsTableViewController.m in Sources */,
 				EAC9F5361B3B406700ED558E /* main.m in Sources */,
 				EAC9F55F1B3B434A00ED558E /* MFRFriendsListTableViewController.m in Sources */,
+				EAC9F5711B3DD92400ED558E /* MFRPhotoProvider.m in Sources */,
 				EAC9F53C1B3B406700ED558E /* MyFriends.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

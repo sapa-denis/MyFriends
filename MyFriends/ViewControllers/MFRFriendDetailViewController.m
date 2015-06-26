@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 
 @end
 
@@ -26,6 +27,7 @@
 	_nameLabel.text = self.friendInfo.fullName;
 	_phoneTextField.text = self.friendInfo.phone;
 	_emailTextField.text = self.friendInfo.email;
+	_photoImageView.image = [UIImage imageWithData:self.friendInfo.photo];
 }
 
 #pragma mark - UITextFieldDelegate

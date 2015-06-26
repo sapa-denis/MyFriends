@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "Friend.h"
 #import "MFRFriendDetailViewController.h"
+#import "MFRPhotoProvider.h"
 
 static NSString *const kFriendCellIdentifier = @"FriendCell";
 static NSString *const kFriendsDetailSegueIdentifier = @"FriendDetailSegue";
@@ -50,7 +51,7 @@ static NSString *const kFriendsDetailSegueIdentifier = @"FriendDetailSegue";
 		NSError *error = nil;
 		if (![self.managedObjectContext executeRequest:asyncFetchRequest error:&error]) {
 			NSLog(@"Unable to execute asynchronous fetch result.");
-			NSLog(@"%s, %@", __func__, error.localizedDescription);
+			NSLog(@"%s Executing fetch request Error: %@", __func__, error.localizedDescription);
 		}
 	}];
 }
@@ -74,6 +75,26 @@ static NSString *const kFriendsDetailSegueIdentifier = @"FriendDetailSegue";
 	Friend *person = [self.friendsArray objectAtIndex:indexPath.row];
 	
 	cell.textLabel.text = person.fullName;
+	
+	NSData *photo = person.photo;
+	
+	if (photo) {
+		cell.imageView.image = [UIImage imageWithData:photo];
+	} else {
+		[MFRPhotoProvider imageFromURL:person.photoULRString
+					 withAsociatedCell:cell
+							 indexPath:indexPath
+							  andBlock:^(UIImage *image) {
+								  
+								  person.photo = UIImagePNGRepresentation(image);
+								  
+								  NSError *savingError = nil;
+								  if (![self.managedObjectContext save:&savingError]) {
+									  NSLog(@"Saving Error: %@", savingError.localizedDescription);
+									  return;
+								  }
+							  }];
+	}
 	
 	return cell;
 }

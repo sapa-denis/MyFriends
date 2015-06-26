@@ -106,11 +106,20 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sp0-5U-Tp6">
+                                                    <rect key="frame" x="8" y="8" width="80" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="NVd-X7-jbu"/>
+                                                        <constraint firstAttribute="height" constant="80" id="bU8-Vo-hgp"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="yG7-aV-ks3" firstAttribute="top" secondItem="fwr-O5-QRj" secondAttribute="topMargin" constant="113" id="Bye-Ex-amw"/>
                                                 <constraint firstItem="yG7-aV-ks3" firstAttribute="trailing" secondItem="fwr-O5-QRj" secondAttribute="trailingMargin" id="KQc-yq-U0M"/>
+                                                <constraint firstItem="sp0-5U-Tp6" firstAttribute="top" secondItem="fwr-O5-QRj" secondAttribute="topMargin" id="cqy-fD-eBS"/>
                                                 <constraint firstItem="yG7-aV-ks3" firstAttribute="leading" secondItem="fwr-O5-QRj" secondAttribute="leadingMargin" id="lAa-cR-eJj"/>
+                                                <constraint firstItem="sp0-5U-Tp6" firstAttribute="leading" secondItem="fwr-O5-QRj" secondAttribute="leadingMargin" id="zX2-1N-1on"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -168,6 +177,7 @@
                         <outlet property="emailTextField" destination="EW9-yU-Lfv" id="ap2-vx-79X"/>
                         <outlet property="nameLabel" destination="yG7-aV-ks3" id="TLz-vm-LMi"/>
                         <outlet property="phoneTextField" destination="nPv-7B-TMu" id="hrK-5v-wER"/>
+                        <outlet property="photoImageView" destination="sp0-5U-Tp6" id="o5i-nc-gyy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cfh-ni-bfF" userLabel="First Responder" sceneMemberID="firstResponder"/>

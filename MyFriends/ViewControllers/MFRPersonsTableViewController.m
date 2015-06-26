@@ -12,6 +12,7 @@
 #import "MFRRandomuserAPI.h"
 #import "AppDelegate.h"
 #import "Friend.h"
+#import "MFRPhotoProvider.h"
 
 
 static NSString *const kPersonsCellIdentifier = @"NewPersonCell";
@@ -79,7 +80,20 @@ static NSString *const kPersonsCellIdentifier = @"NewPersonCell";
 	
 	Friend *person = [self.personsArray objectAtIndex:indexPath.row];
 	
-	cell.textLabel.text = [NSString stringWithFormat:@"%@, %@", person.lastName, person.firstName];
+	cell.textLabel.text = person.fullName;
+	
+	NSData *photo = person.photo;
+	
+	if (photo) {
+		cell.imageView.image = [UIImage imageWithData:photo];
+	} else {
+		[MFRPhotoProvider imageFromURL:person.photoULRString
+					 withAsociatedCell:cell
+							 indexPath:indexPath
+							  andBlock:^(UIImage *image) {
+								  person.photo = UIImagePNGRepresentation(image);
+							  }];
+	}
 	
 	return cell;
 	

@@ -24,5 +24,4 @@
 
 - (void)fillFromDictionary:(NSDictionary *)mappedObj;
 
-
 @end
