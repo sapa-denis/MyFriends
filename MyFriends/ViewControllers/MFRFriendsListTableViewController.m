@@ -16,10 +16,11 @@
 static NSString *const kFriendCellIdentifier = @"FriendCell";
 static NSString *const kFriendsDetailSegueIdentifier = @"FriendDetailSegue";
 
-@interface MFRFriendsListTableViewController ()
+@interface MFRFriendsListTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *friendsArray;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -30,38 +31,31 @@ static NSString *const kFriendsDetailSegueIdentifier = @"FriendDetailSegue";
 {
 	AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	_managedObjectContext = [delegate managedObjectContext];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
+	
 	__weak MFRFriendsListTableViewController *weakSelf = self;
-	
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Friend class])];
-	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"isFriend == 1"]];
-	
-	NSAsynchronousFetchRequest *asyncFetchRequest =
-		[[NSAsynchronousFetchRequest alloc] initWithFetchRequest:fetchRequest
-												 completionBlock:^(NSAsynchronousFetchResult *result) {
-													 dispatch_async(dispatch_get_main_queue(), ^{
-														 weakSelf.friendsArray = [NSMutableArray arrayWithArray:result.finalResult];
-														 [weakSelf.tableView reloadData];
-													 });
-												 }];
-	
-	[self.managedObjectContext performBlock:^{
-		NSError *error = nil;
-		if (![self.managedObjectContext executeRequest:asyncFetchRequest error:&error]) {
-			NSLog(@"Unable to execute asynchronous fetch result.");
-			NSLog(@"%s Executing fetch request Error: %@", __func__, error.localizedDescription);
+	[[[self fetchedResultsController] managedObjectContext] performBlock:^{
+		NSError *error;
+		if (![[self fetchedResultsController] performFetch:&error]) {
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		} else {
+			[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+				[weakSelf.tableView reloadData];
+			}];
 		}
 	}];
 }
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return self.friendsArray.count;
+	id  sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+	return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,8 +67,47 @@ static NSString *const kFriendsDetailSegueIdentifier = @"FriendDetailSegue";
 									  reuseIdentifier:kFriendCellIdentifier];
 	}
 	
-	Friend *person = [self.friendsArray objectAtIndex:indexPath.row];
-	
+	[self configureCell:cell atIndexPath:indexPath];
+	return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return YES;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
+		
+		[self.tableView beginUpdates];
+		Friend *deletedFriend = [self.fetchedResultsController objectAtIndexPath:indexPath];
+		deletedFriend.isFriend = NO;
+		
+		NSError *savingError = nil;
+		if (![self.managedObjectContext save:&savingError]) {
+			NSLog(@"Saving Error: %@", savingError.localizedDescription);
+			return;
+		}
+		[self.friendsArray removeObjectAtIndex:indexPath.row];
+		
+		[tableView deleteRowsAtIndexPaths:@[indexPath]
+						 withRowAnimation:UITableViewRowAnimationFade];
+		
+		[self.tableView endUpdates];
+	}
+}
+
+#pragma mark -
+
+- (void)configureCell:(UITableViewCell *)cell
+		  atIndexPath:(NSIndexPath *)indexPath
+{
+	Friend *person = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	cell.textLabel.text = person.fullName;
 	
 	NSData *photo = person.photo;
@@ -96,37 +129,82 @@ static NSString *const kFriendsDetailSegueIdentifier = @"FriendDetailSegue";
 								  }
 							  }];
 	}
-	
-	return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-	return YES;
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+		[self.tableView beginUpdates];
+	}];
 }
 
-#pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+	   atIndexPath:(NSIndexPath *)indexPath
+	 forChangeType:(NSFetchedResultsChangeType)type
+	  newIndexPath:(NSIndexPath *)newIndexPath
 {
-	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		Friend *deletedFriend = [self.friendsArray objectAtIndex:indexPath.row];
-		deletedFriend.isFriend = NO;
-		
-		
-		NSError *savingError = nil;
-		if (![self.managedObjectContext save:&savingError]) {
-			NSLog(@"Saving Error: %@", savingError.localizedDescription);
-			return;
+ 
+	UITableView *tableView = self.tableView;
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+		switch(type) {
+				
+			case NSFetchedResultsChangeInsert:
+				[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+								 withRowAnimation:UITableViewRowAnimationFade];
+				break;
+				
+			case NSFetchedResultsChangeDelete:
+				[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+								 withRowAnimation:UITableViewRowAnimationFade];
+				break;
+				
+			case NSFetchedResultsChangeUpdate:
+				[tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:NO];
+				break;
+				
+			case NSFetchedResultsChangeMove:
+				[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+								 withRowAnimation:UITableViewRowAnimationFade];
+				[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+								 withRowAnimation:UITableViewRowAnimationFade];
+				break;
 		}
-		[self.friendsArray removeObjectAtIndex:indexPath.row];
-		[tableView deleteRowsAtIndexPaths:@[indexPath]
-						 withRowAnimation:UITableViewRowAnimationFade];
-		
-		
-	}
+	}];
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller
+  didChangeSection:(id )sectionInfo
+		   atIndex:(NSUInteger)sectionIndex
+	 forChangeType:(NSFetchedResultsChangeType)type
+{
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+		switch(type) {
+				
+			case NSFetchedResultsChangeInsert:
+				[self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+				break;
+				
+			case NSFetchedResultsChangeDelete:
+				[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+				break;
+				
+			default:
+				break;
+		}
+	}];
+}
+
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+		[self.tableView endUpdates];
+	}];
 }
 
 #pragma mark - Navigation
@@ -136,8 +214,42 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	if ([segue.identifier isEqualToString:kFriendsDetailSegueIdentifier]) {
 		MFRFriendDetailViewController *destination = [segue destinationViewController];
 		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-		destination.friendInfo = [self.friendsArray objectAtIndex:indexPath.row];
+		destination.friendInfo = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	}
+}
+
+#pragma mark - CoreData
+
+- (NSFetchedResultsController *)fetchedResultsController {
+ 
+	if (_fetchedResultsController != nil) {
+		return _fetchedResultsController;
+	}
+ 
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([Friend class])
+											  inManagedObjectContext:self.managedObjectContext];
+	
+	[fetchRequest setEntity:entity];
+ 
+	NSSortDescriptor *sort = [[NSSortDescriptor alloc]
+							  initWithKey:@"lastName" ascending:YES];
+	
+	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"isFriend == 1"]];
+	[fetchRequest setSortDescriptors:@[sort]];
+	[fetchRequest setFetchBatchSize:20];
+ 
+	NSFetchedResultsController *theFetchedResultsController =
+	[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+										managedObjectContext:self.managedObjectContext
+										  sectionNameKeyPath:nil
+												   cacheName:nil];
+	
+	_fetchedResultsController = theFetchedResultsController;
+	_fetchedResultsController.delegate = self;
+ 
+	return _fetchedResultsController;
+ 
 }
 
 
