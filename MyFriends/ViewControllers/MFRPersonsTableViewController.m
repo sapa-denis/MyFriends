@@ -8,12 +8,10 @@
 
 #import "MFRPersonsTableViewController.h"
 #import <CoreData/CoreData.h>
-
 #import "MFRRandomuserAPI.h"
 #import "AppDelegate.h"
 #import "Friend.h"
 #import "MFRPhotoProvider.h"
-
 
 static NSString *const kPersonsCellIdentifier = @"NewPersonCell";
 
@@ -29,7 +27,6 @@ static NSString *const kPersonsCellIdentifier = @"NewPersonCell";
 {
 	[super viewWillAppear:animated];
 	
-	
 	__weak MFRPersonsTableViewController* weakSelf = self;
 	[MFRRandomuserAPI fetchNewPeopleWithSuccess:^(NSArray *newPeople) {
 		weakSelf.personsArray = [NSMutableArray arrayWithArray:newPeople];
@@ -40,6 +37,28 @@ static NSString *const kPersonsCellIdentifier = @"NewPersonCell";
 										}];
 }
 
+- (IBAction)loadMoreFriendsBarButtonTouch:(id)sender
+{
+	__weak MFRPersonsTableViewController* weakSelf = self;
+	[MFRRandomuserAPI fetchNewPeopleWithSuccess:^(NSArray *newPeople) {
+		[weakSelf.personsArray insertObjects:newPeople
+								   atIndexes:[NSIndexSet indexSetWithIndexesInRange:
+											  NSMakeRange(0,[newPeople count])]];
+		[self.tableView beginUpdates];
+		
+		NSMutableArray *indexPaths = [NSMutableArray array];
+		for (int i = 0; i < newPeople.count; i++) {
+			[indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+		}
+		
+		[weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+		
+		[self.tableView endUpdates];
+	}
+										failure:^(NSError *error) {
+											NSLog(@"%s Fetch Error: %@", __func__, error.localizedDescription);
+										}];
+}
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,7 +115,6 @@ static NSString *const kPersonsCellIdentifier = @"NewPersonCell";
 	}
 	
 	return cell;
-	
 }
 
 @end
