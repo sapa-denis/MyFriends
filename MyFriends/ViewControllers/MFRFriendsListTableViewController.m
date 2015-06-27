@@ -20,6 +20,7 @@ static NSString *const kFriendsDetailSegueIdentifier = @"FriendDetailSegue";
 
 @property (nonatomic, strong) NSMutableArray *friendsArray;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 @end
 
 
